@@ -9,8 +9,8 @@ class TeamService implements IServiceTeam {
     return result;
   }
 
-  public async readOne(): Promise<Team | null> {
-    const result = await this.model.findByPk();
+  public async readOne(id:number): Promise<Team | null> {
+    const result = await this.model.findByPk(id);
     return result;
   }
 }
