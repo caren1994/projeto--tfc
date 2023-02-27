@@ -1,15 +1,22 @@
 import * as express from 'express';
+import TeamRoutes from './api/routes/index';
 
 class App {
   public app: express.Express;
 
   constructor() {
     this.app = express();
+    this.routes();
 
     this.config();
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
+  }
+
+  private routes(): void {
+    this.app.use('/teams', TeamRoutes);
+    this.app.use('/teams:id', TeamRoutes);
   }
 
   private config():void {
