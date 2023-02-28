@@ -36,7 +36,7 @@ const teams=[
 
   it('testando metodo get da rota /teams', async () => {
     //Arrange
-    sinon.stub(Model,'findAll').resolves(teams);
+    // sinon.stub(Model,'findAll').resolves(teams);
     //Action
     const response= await chai.request(app).get('/teams');
     //Assertions
@@ -44,8 +44,8 @@ const teams=[
     // expect(response.body).to.be.deep.equal(teams);
   });
   it('Testando o metodo get da rota /teams:id', async () => {
-    //Arrange
-    sinon.stub(Model,'findOne').resolves(oneTeam);
+    // //Arrange
+    // sinon.stub(Model,'findOne').resolves(oneTeam);
     //Action
     const response= await chai.request(app).get('/teams/7');
     //Assertions
