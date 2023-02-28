@@ -13,7 +13,7 @@ class UserService implements IServiceUser {
       const result = await this.model.findOne(
         { where: { email: user.email } },
       );
-      const validatePass = bcrypt.compareSync(user.password, result?.password || '-');// comentario
+      const validatePass = bcrypt.compareSync(user.password, result?.password || '-');
       return validatePass ? result?.dataValues : null;
     } catch (error) {
       const err = error as Error;
