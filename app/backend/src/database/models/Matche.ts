@@ -65,7 +65,7 @@ Matche.init({
   * Associations 1:N devem ficar em uma das instâncias de modelo
   * */
 
-Matche.belongsTo(Team, { foreignKey: 'homeTeaamId', as: 'homeTeam' });
+Matche.belongsTo(Team, { foreignKey: 'homeTeamId', as: 'homeTeam' });
 Matche.belongsTo(Team, { foreignKey: 'awayTeamId', as: 'awayTeam' });
 
 export default Matche;
