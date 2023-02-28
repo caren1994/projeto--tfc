@@ -13,7 +13,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('testes de integração users', () => {
+describe('testes de integração users ', () => {
   // afterEach(function(){
   //   sinon.restore();
   // })
