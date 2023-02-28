@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as cors from 'cors';
 import TeamRoutes from './api/routes/index';
 
 class App {
@@ -7,18 +6,12 @@ class App {
 
   constructor() {
     this.app = express();
-    this.app.use(cors);
-    this.routes();
 
     this.config();
+    this.routes();
 
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
-  }
-
-  private routes(): void {
-    this.app.use('/teams', TeamRoutes);
-    this.app.use('/teams:id', TeamRoutes);
   }
 
   private config():void {
@@ -31,6 +24,10 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
+  }
+
+  private routes(): void {
+    this.app.use('/teams', TeamRoutes);
   }
 
   public start(PORT: string | number):void {
