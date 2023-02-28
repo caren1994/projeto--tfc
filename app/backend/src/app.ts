@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as cors from 'cors';
 import TeamRoutes from './api/routes/index';
 
 class App {
@@ -6,6 +7,7 @@ class App {
 
   constructor() {
     this.app = express();
+    this.app.use(cors);
     this.routes();
 
     this.config();
