@@ -13,7 +13,7 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('testes de integração', () => {
+describe('testes de integração teams', () => {
   afterEach(function(){
     sinon.restore();
   })
