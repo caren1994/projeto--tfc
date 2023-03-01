@@ -8,7 +8,13 @@ class MatcheController {
   }
 
   public async readAll(req:Request, res:Response):Promise <Response | void> {
-    const result = await this._service.readAll();
+    const { inProgress } = req.query;// vem uma string
+    if (inProgress === undefined) {
+      const result = await this._service.readAll();
+      return res.status(200).json(result);
+    }
+
+    const result = await this._service.readAll(inProgress === 'true');// faço a comparação da strings que vai me retornar um true ou false
     res.status(200).json(result);
   }
 }
