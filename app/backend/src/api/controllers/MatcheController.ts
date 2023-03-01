@@ -29,5 +29,18 @@ class MatcheController {
     await this._service.updateMatche(+id, req.body);
     return res.status(200).json({ mensagem: 'Placar Alterado' });
   }
+
+  public async createMatche(req:Request, res:Response):Promise<Response | void> {
+    try {
+      const result = await this._service.createMatche(req.body);
+      res.status(201).json(result);
+    } catch (err) {
+      const error = err as Error;
+      if (error.message !== 'It is not possible to create a match with two equal teams') {
+        return res.status(404).json({ message: 'There is no team with such id!' });
+      }
+      res.status(422).json({ message: error.message });
+    }
+  }
 }
 export default MatcheController;
