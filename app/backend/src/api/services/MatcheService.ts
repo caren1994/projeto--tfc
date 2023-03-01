@@ -3,6 +3,8 @@ import Matche from '../../database/models/Matche';
 import IServiceMatche from '../interfaces/IServiceMatche';
 import Team from '../../database/models/Team';
 import IBodyMatche from '../interfaces/IBodyMatche';
+import IBodyCreateMatche from '../interfaces/IBodyCreateMatche';
+import ErrorMatche from '../../utils/ErrorMatche';
 
 class MatcheService implements IServiceMatche {
   protected model:ModelStatic <Matche> = Matche;
@@ -36,6 +38,24 @@ class MatcheService implements IServiceMatche {
     const result = await this.model.update({ homeTeamGoals: body.homeTeamGoals,
       awayTeamGoals: body.awayTeamGoals }, { where: { id } });
     return result;
+  }
+
+  async createMatche(
+    { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals }
+    :IBodyCreateMatche,
+  ): Promise<Matche> {
+    try {
+      if (homeTeamId === awayTeamId) {
+        throw new ErrorMatche('It is not possible to create a match with two equal teams', 422);
+      }
+      const result = await this.model.create(
+        { homeTeamId, awayTeamId, homeTeamGoals, awayTeamGoals, inProgress: true },
+      );
+      return result;
+    } catch (error) {
+      const err = error as Error;
+      throw new Error(err.message);
+    }
   }
 }
 
