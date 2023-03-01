@@ -25,6 +25,11 @@ class MatcheService implements IServiceMatche {
     );
     return result;
   }
+
+  async finish(id:number):Promise<number[] | undefined> {
+    const result = await this.model.update({ inProgress: false }, { where: { id } });
+    return result;
+  }
 }
 
 export default MatcheService;
