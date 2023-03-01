@@ -8,6 +8,11 @@ const matcheService = new MatcheService();
 const matcheController = new MatcheController(matcheService);
 
 matcheRouter.get('/', (req:Request, res:Response) => matcheController.readAll(req, res));
+matcheRouter.post(
+  '/',
+  validateToken,
+  (req:Request, res:Response) => matcheController.createMatche(req, res),
+);
 matcheRouter.patch(
   '/:id',
   validateToken,
