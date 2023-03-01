@@ -20,8 +20,14 @@ class MatcheController {
 
   public async finish(req:Request, res:Response):Promise<Response | void > {
     const { id } = req.params;
-    const result = await this._service.finish(+id);
-    return res.status(200).json(result);
+    await this._service.finish(+id);
+    return res.status(200).json({ mensagem: 'Finished' });
+  }
+
+  public async updateMatche(req:Request, res:Response):Promise<Response | void> {
+    const { id } = req.params;
+    await this._service.updateMatche(+id, req.body);
+    return res.status(200).json({ mensagem: 'Placar Alterado' });
   }
 }
 export default MatcheController;
