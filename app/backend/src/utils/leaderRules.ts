@@ -40,7 +40,7 @@ export default class LeaderRules {
     const side = `${teamSide}TeamId` as 'homeTeamId' | 'awayTeamId';
     const goalsTeam = `${teamSide}TeamGoals` as 'homeTeamGoals' | 'awayTeamGoals';
     return matches.filter(
-      (match) => match[side] === teamId,
+      (match) => match[side] === teamId, // filtra apenas as partidas do time home ou away (side) recebido que for igual ao teamId
     ).filter((team) => team[goalsTeam]// filtra apenas a quantidade de vezes que os gols do side recebido for igual ao do outro side
   === team[`${teamSide === 'home' ? 'away' : 'home'}TeamGoals`]).length;
   }
@@ -57,22 +57,23 @@ export default class LeaderRules {
   static totalGoals(matches: Matche[], teamId: number, teamSide: string): number {
     const side = `${teamSide}TeamId` as 'homeTeamId' | 'awayTeamId';// construção da string
     const goalsTeam = `${teamSide}TeamGoals` as 'homeTeamGoals' | 'awayTeamGoals';// construção da string
-    return matches.reduce((acc, curr) => { // curr=== ao valor do objeto a cada iteração
-      let goals = acc;
-      if (curr[side] === teamId) { // se o valor de homeTeamId ou awayTeamId for igual ao teamId enviado por parametro
-        goals += curr[goalsTeam];// goals recebe o valor (number)de homegoalsTeam ou awaygoalsteam
-      }
+    // filtra apenas as partidas do time home ou away (side) recebido que for igual ao teamId
+    return matches.filter((e) => e[side] === teamId).reduce((acc, curr) => { // curr=== ao valor do objeto a cada iteração
+      let goals = acc;// o reduce passa dentro do resuktado de filter e soma o valor de goalsteam
+      goals += curr[goalsTeam];// goals recebe o valor (number)de homegoalsTeam ou awaygoalsteam
+
       return goals;
     }, 0);
   }
 
   static totalGoalsOwn(matches: Matche[], teamId: number, teamSide: string): number { // gols sofridos
     const side = `${teamSide}TeamId` as 'homeTeamId' | 'awayTeamId';
-    return matches.reduce((acc, curr) => {
-      let goals = acc;
-      if (curr[side] === teamId) { // se curr[side] for home ou away o currteamgoals faz o inverso
-        goals += curr[`${teamSide === 'home' ? 'away' : 'home'}TeamGoals`];// construção de outra string para
-      }
+    // filtra apenas as partidas do time home ou away (side) recebido que for igual ao teamId
+    return matches.filter((e) => e[side] === teamId).reduce((acc, curr) => {
+      let goals = acc;// o reduce passa dentro do resuktado de filter e soma o valor de goalsteam
+      goals += curr[`${teamSide === 'home' ? 'away' : 'home'}TeamGoals`];// construção de outra string para
+      // se curr[side] for home ou away o currteamgoals faz o inverso
+
       return goals;
     }, 0);
   }
