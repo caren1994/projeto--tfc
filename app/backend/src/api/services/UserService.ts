@@ -14,7 +14,7 @@ class UserService implements IServiceUser {
         { where: { email: user.email } },
       );
       const validatePass = bcrypt.compareSync(user.password, result?.password || '-');
-      return validatePass ? result?.dataValues : null;
+      return validatePass ? result?.dataValues : null;//
     } catch (error) {
       const err = error as Error;
       throw new Error(`${err.message}`);
