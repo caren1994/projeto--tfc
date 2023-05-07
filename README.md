@@ -1,13 +1,47 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Projeto Trybe Futebol Clube
+Projeto realizado durante módulo de Back-end do curso de desenvolvimento web da Trybe.
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+  <summary><strong>O que foi feito</strong></summary></br>
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+  Neste projeto desenvolvi um back-end dockerizado utilizando modelagem de dados através do Sequelize. Seu desenvolvimento respeitou as regras de negócio providas no projeto e API deve ser capaz de ser consumida por um front-end já provido nesse projeto, que foi desenvolvida pela Trybe em `React`.
+
+  O aplicativo TFC é um site informativo sobre partidas e classificações de futebol! ⚽️
+
+  Nesta aplicação, é possível realizar as operações básicas que se pode fazer em um determinado banco de dados: `CRUD`.
+
+  A aplicação foi desenvolvida com:
+
+- `Node.js`
+- `TypeScript`
+- `JWT`
+- `Sequelize`
+- `POO`
+- `S.O.L.I.D`
+- `Arquitetura MSC`
+- `docker`
+- `docker-compose`
+- `MySql`
+- `Express`;
+
+
+  <summary><strong>Como rodar o projeto</strong></summary></br>
+
+  **Com Docker:**
+
+  **:warning: Antes de começar, seu docker-compose precisa estar na versão 1.29 ou superior.
+
+- `npm run compose:up` na raiz do projeto;
+- `npm run install:apps` na raiz do projeto para instalar dependências do front e back-end;
+- `docker exec -it app_backend bash` em ./app/backend;
+- `npm run build` no container do backend;
+- `npm run db:reset` no container do backend;
+
+**Localmente:**
+
+**Necessita ter um banco de dados(MySql) instalado localmente**
+
+- `npm run install:apps` na raiz do projeto para instalar dependências do front e back-end;
+- `npm run compose:up` na raiz do projeto;
+- `npm run build`;
+- `npm run db:reset`;
+
